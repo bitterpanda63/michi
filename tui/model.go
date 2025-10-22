@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/bitterpanda63/michi/config"
+	"github.com/bitterpanda63/michi/mistral"
 	"github.com/charmbracelet/bubbletea"
 )
 
@@ -33,6 +35,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Quit
 		case "enter":
 			// TODO: Handle prompt submission
+			mistral.ChatStream(config.GetMistralAPIToken(), m.prompt)
 			return m, nil
 		case "backspace":
 			if len(m.prompt) > 0 {
